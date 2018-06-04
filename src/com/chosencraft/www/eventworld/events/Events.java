@@ -7,6 +7,6 @@ public enum  Events
     CTF,
     BATTLESHIP,
     PAYLOAD,
-    DODGE
-
+    DODGE,
+    UNKNOWN
 }

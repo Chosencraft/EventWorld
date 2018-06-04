@@ -13,6 +13,7 @@ public class Permissions
     public static String COMMAND_SPLEEF = "eventworld.command.spleef";
     public static String COMMAND_PARKOUR = "eventworld.command.parkour";
     public static String COMMAND_SPAWN  = "eventworld.command.spawn";
+    public static String COMMAND_SET_EVENT_LOCATION = "eventworld.command.setevent";
 
     // Notification Permissions
     public static String NOTIFY_ADMIN = "eventworld.notify.admin";

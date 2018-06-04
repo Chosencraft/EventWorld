@@ -1,5 +1,6 @@
 package com.chosencraft.www.eventworld;
 
+import com.chosencraft.www.eventworld.commands.EventWorld;
 import com.chosencraft.www.eventworld.listeners.FlyingListener;
 import com.chosencraft.www.eventworld.listeners.PlayerDamageListener;
 import com.chosencraft.www.eventworld.utils.Logger;
@@ -37,7 +38,7 @@ public class EventWorldMain extends JavaPlugin
         }
 
         registerEvents();
-
+        registerCommands();
     }
 
     /**
@@ -78,6 +79,16 @@ public class EventWorldMain extends JavaPlugin
         manager.registerEvents(new FlyingListener(), this);
         manager.registerEvents(new PlayerDamageListener(), this);
     }
+
+
+    /**
+     * Registers the plugins commands
+     */
+    private void registerCommands()
+    {
+        this.getCommand("eventworld").setExecutor(new EventWorld());
+    }
+
 
     /**
      * Creates the EventWorld
