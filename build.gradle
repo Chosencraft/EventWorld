@@ -6,7 +6,7 @@ plugins {
 }
 
 version = 'v0'
-archivesBaseName= 'EventWorld'
+archivesBaseName= 'eventworld'
 
 repositories {
     mavenCentral()
