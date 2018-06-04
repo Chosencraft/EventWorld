@@ -1,6 +1,7 @@
 package com.chosencraft.www.eventworld;
 
 import com.chosencraft.www.eventworld.listeners.FlyingListener;
+import com.chosencraft.www.eventworld.listeners.PlayerDamageListener;
 import com.chosencraft.www.eventworld.world.GenerateWorlds;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -37,6 +38,7 @@ public class EventWorldMain extends JavaPlugin
         PluginManager manager = this.getServer().getPluginManager();
 
         manager.registerEvents(new FlyingListener(), this);
+        manager.registerEvents(new PlayerDamageListener(), this);
     }
 
     private String createEventWorld()
