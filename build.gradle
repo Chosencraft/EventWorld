@@ -1,0 +1,17 @@
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+}
+
+version = 'v0'
+archivesBaseName= 'EventWorld'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1-Snapshot"
+}
