@@ -40,9 +40,7 @@ public class GenerateWorlds
                 worldCreator.generator(new VoidGenerator());
             }
 
-            World newWorld = Bukkit.createWorld(worldCreator);
-
-            return newWorld;
+            return Bukkit.createWorld(worldCreator);
         }
         else
         {

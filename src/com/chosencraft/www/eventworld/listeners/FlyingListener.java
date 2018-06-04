@@ -17,7 +17,7 @@ public class FlyingListener implements Listener
     /**
      * Handles players flying in the event world
      *
-     * @param moveEvent
+     * @param moveEvent PlayerMoveEvent passed down by Bukkit
      */
     @EventHandler
     public void onFlying(PlayerMoveEvent moveEvent)
@@ -43,7 +43,7 @@ public class FlyingListener implements Listener
                 if (player.isFlying())
                 {
                     Location location = player.getLocation();
-                    Location landingSpot = getSkyFacingBlock(location).add(0,1,0);
+                    Location landingSpot = getSkyFacingBlock(location);
                     player.setFlying(false);
                     if (landingSpot == null)
                     {
@@ -52,7 +52,7 @@ public class FlyingListener implements Listener
                     }
                     else
                     {
-                        player.teleport(landingSpot);
+                        player.teleport(landingSpot.add(0,1,0));
                     }
                 }
             }

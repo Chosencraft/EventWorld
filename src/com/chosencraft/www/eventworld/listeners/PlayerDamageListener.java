@@ -14,7 +14,7 @@ public class PlayerDamageListener implements Listener
     /**
      * Disables players from taking damage in the event world
      *
-     * @param damageEvent
+     * @param damageEvent EntityDamageEvent Passed down by Bukkit
      */
     @EventHandler
     public void onPlayerDamageEvent(EntityDamageEvent damageEvent)
