@@ -8,6 +8,12 @@ public class Permissions
 
     // Command Permissions
 
+    public static String COMMAND_GENERAL = "eventworld.command.help";
+    public static String COMMAND_SET_SPAWN = "eventworld.command.setspawn";
+    public static String COMMAND_SPLEEF = "eventworld.command.spleef";
+    public static String COMMAND_PARKOUR = "eventworld.command.parkour";
+    public static String COMMAND_SPAWN  = "eventworld.command.spawn";
+
     // Notification Permissions
     public static String NOTIFY_ADMIN = "eventworld.notify.admin";
     public static String NOTIFY_MODERATOR = "eventworld.notify.moderator";
