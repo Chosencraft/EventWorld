@@ -96,7 +96,7 @@ public class EventWorldMain extends JavaPlugin
         eventWorld.setAmbientSpawnLimit(0);
         eventWorld.setAnimalSpawnLimit(0);
         eventWorld.setDifficulty(Difficulty.PEACEFUL);
-        eventWorld.setPVP(false);
+        eventWorld.setPVP(true); // Needs to be true for CTF, will need to handle other things on a regional basis
         eventWorld.setMonsterSpawnLimit(0);
 
         return eventWorld.getUID();
