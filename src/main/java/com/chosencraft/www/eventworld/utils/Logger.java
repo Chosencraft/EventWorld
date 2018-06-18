@@ -2,12 +2,13 @@ package com.chosencraft.www.eventworld.utils;
 
 import com.chosencraft.www.eventworld.EventWorldMain;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.plugin.Plugin;
 
 import java.util.logging.Level;
 
 public class Logger
 {
-    private static EventWorldMain main = new EventWorldMain();
+    private static Plugin main = EventWorldMain.getThisPlugin();
 
     private static java.util.logging.Logger logger = main.getLogger();
 

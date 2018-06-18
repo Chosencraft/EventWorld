@@ -12,7 +12,7 @@ public class GenerateWorlds
     private static Logger log = Logger.getInstance();
     /**
      *
-     * @param worldName Name of the com.chosencraft.www.eventworld.world to be created
+     * @param worldName Name of the Event World to be created to be created
      * @return Returns Null if failed, otherwise returns the World
      */
     public static World createWorld(String worldName, World.Environment environment, boolean generateStructures, WorldType worldType, boolean voidWorld)

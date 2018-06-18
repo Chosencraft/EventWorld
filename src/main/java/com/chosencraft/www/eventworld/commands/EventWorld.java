@@ -5,8 +5,8 @@ import com.chosencraft.www.eventworld.Permissions;
 import com.chosencraft.www.eventworld.events.Events;
 import com.chosencraft.www.eventworld.utils.Logger;
 import com.chosencraft.www.eventworld.utils.OddUtilities;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -19,14 +19,14 @@ public class EventWorld implements CommandExecutor
 
     private Logger log = Logger.getInstance();
     private World eventWorld = Bukkit.getWorld(EventWorldMain.eventWorldUUID);
-    private String badPermission = response("Sorry, you don't have permission for this!");
+    private String badPermission = response("Sorry, you don't have permission for this!", true);
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
         if (!(sender instanceof Player))
         {
-            log.logWarning(response("Cannot change event world properties from console! "));
+            log.logWarning(response( "Cannot change event world properties from console! ", true));
         }
         else {
             Player player = (Player) sender;
@@ -74,6 +74,11 @@ public class EventWorld implements CommandExecutor
      */
     private void sendHelpMessage(Player player)
     {
+        player.sendMessage(response("----------------------------", false));
+        player.sendMessage(ChatColor.AQUA + "help: " + ChatColor.GREEN + "Displays this help menu" );
+        player.sendMessage(ChatColor.AQUA + "setspawn: " + ChatColor.GREEN + "Sets the your current location spawn of the Event World" );
+        player.sendMessage(ChatColor.AQUA + "spawn: " + ChatColor.GREEN + "Teleport to the Event World spawn!" );
+        player.sendMessage(ChatColor.AQUA + "setlocation <event>" + ChatColor.GREEN + "Displays this help menu" );
 
     }
 
@@ -88,7 +93,7 @@ public class EventWorld implements CommandExecutor
         {
             if (args[2] == null || args[2].isEmpty())
             {
-                player.sendMessage(response("Need to specify the event name!"));
+                player.sendMessage(response("Need to specify the event name!", true));
                 return;
             }
             else
@@ -96,7 +101,7 @@ public class EventWorld implements CommandExecutor
                 Events event = OddUtilities.stringToEvent(args[2]);
                 if (event.equals(Events.UNKNOWN))
                 {
-                    player.sendMessage(response("The event name " + args[2] + " doesn't exist!"));
+                    player.sendMessage(response("The event name " + args[2] + " doesn't exist!", true));
                     return;
                 }
                 else
@@ -145,7 +150,17 @@ public class EventWorld implements CommandExecutor
     {
         if (player.hasPermission(Permissions.COMMAND_SET_SPAWN))
         {
-            eventWorld.setSpawnLocation(player.getLocation());
+            if (player.getWorld().equals(eventWorld))
+            {
+                eventWorld.setSpawnLocation(player.getLocation());
+                player.sendMessage(response("Event world has been set!" , false));
+            }
+            else
+            {
+                player.sendMessage(response("You are not in the event world! ", true));
+            }
+
+
         }
         else
         {
@@ -159,13 +174,24 @@ public class EventWorld implements CommandExecutor
      * @param message Message to format in
      * @return The formatted message
      */
-    private String response (String message)
+    private String response (String message, boolean bad )
     {
+        ChatColor status;
+
+        if (bad)
+        {
+            status = ChatColor.DARK_RED;
+        }
+        else
+        {
+            status = ChatColor.GREEN;
+        }
+
         return String.format(
                 ChatColor.GOLD + "[" +
                         ChatColor.AQUA + "EventWorld" +
                         ChatColor.GOLD + "] " +
-                        ChatColor.GREEN + "%s" ,
+                        status + "%s" ,
                 message);
     }
 }

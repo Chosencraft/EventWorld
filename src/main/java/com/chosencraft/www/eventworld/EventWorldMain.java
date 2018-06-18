@@ -12,6 +12,7 @@ import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,14 +32,18 @@ public class EventWorldMain extends JavaPlugin
      */
     public void onEnable()
     {
+
+        saveDefaultConfig();
+
         // Check if the event world already exists
-        if (Bukkit.getWorld(eventWorldName) == null)
+        if (Bukkit.getWorld(eventWorldName) == null && getConfig().getBoolean("GenerateEventWorld"))
         {
             eventWorldUUID = createEventWorld();
         }
 
         registerEvents();
         registerCommands();
+
     }
 
     /**
@@ -50,14 +55,18 @@ public class EventWorldMain extends JavaPlugin
     {
         //  Send all players in the event world to main spawn
         World eventWorld = Bukkit.getWorld(eventWorldUUID);
-        List<Player> players = eventWorld.getPlayers();
-
-        for (Player player : players)
+        if (eventWorld != null)
         {
-            OddUtilities.sendPlayerToSpawn(player);
+            List<Player> players = eventWorld.getPlayers();
+
+            for (Player player : players)
+            {
+                OddUtilities.sendPlayerToSpawn(player);
+            }
+
         }
 
-        // unload the event world,l important to do since without the plugin it isn't protected
+        // unload the event world, important to do since without the plugin it isn't protected
 
         boolean unloadedSuccefully = Bukkit.unloadWorld(eventWorld, true);
         if (!unloadedSuccefully)
@@ -96,21 +105,31 @@ public class EventWorldMain extends JavaPlugin
      */
     private UUID createEventWorld()
     {
-
-        World eventWorld =  GenerateWorlds.createWorld(
+        World eventWorld = GenerateWorlds.createWorld(
                 eventWorldName,
                 World.Environment.NORMAL,
                 false,
                 WorldType.CUSTOMIZED,
                 true);
 
-        eventWorld.setAmbientSpawnLimit(0);
-        eventWorld.setAnimalSpawnLimit(0);
-        eventWorld.setDifficulty(Difficulty.PEACEFUL);
-        eventWorld.setPVP(true); // Needs to be true for CTF, will need to handle other things on a regional basis
-        eventWorld.setMonsterSpawnLimit(0);
+        if (eventWorld == null)
+        {
+            log.logError("Event World was unable to be created! consider contingency");
+            return null;
+        }
+
+            eventWorld.setAmbientSpawnLimit(0);
+            eventWorld.setAnimalSpawnLimit(0);
+            eventWorld.setDifficulty(Difficulty.PEACEFUL);
+            eventWorld.setPVP(true); // Needs to be true for CTF, will need to handle other things on a regional basis
+            eventWorld.setMonsterSpawnLimit(0);
 
         return eventWorld.getUID();
+    }
+
+    public static Plugin getThisPlugin()
+    {
+        return Bukkit.getPluginManager().getPlugin("EventWorld");
     }
 }
 

@@ -18,8 +18,8 @@ repositories {
 }
 
 def CommonManifest = {
-    attributes 'Main-Class' :'com.chosencraft.www.chat.MainChat',
-            'Implementation-Title': 'ChosenChat',
+    attributes 'Main-Class' :'com.chosencraft.www.chat.EventWorldMain',
+            'Implementation-Title': 'EventWorld',
             'Implementation-Version': project.version,
             'Build-With': 'Gradle v' + project.getGradle().getGradleVersion()
 }
