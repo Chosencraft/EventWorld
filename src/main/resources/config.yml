@@ -14,9 +14,3 @@ ConfigVersion: 1.0
 ### Generate Event World if it does not exist
 GenerateEventWorld: true
 
-
-###################################################################################################
-### Everything below this is considered data, do not touch it unless you know what you're doing ###
-###################################################################################################
-### Currently these events are hard coded, do not delete them
-events:
