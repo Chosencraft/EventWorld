@@ -2,10 +2,9 @@
 ### Everything below this is considered data, do not touch it unless you know what you're doing ###
 ###################################################################################################
 ### Currently these events are hard coded, do not delete them
-events:
-  SPLEEF:
-  PARKOUR:
-  CTF:
-  BATTLESHIP:
-  PAYLOAD:
-  DODGE:
+SPLEEF:
+PARKOUR:
+CTF:
+BATTLESHIP:
+PAYLOAD:
+DODGE:
