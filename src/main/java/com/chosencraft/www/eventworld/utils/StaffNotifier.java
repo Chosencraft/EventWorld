@@ -1,7 +1,6 @@
 package com.chosencraft.www.eventworld.utils;
 
 import com.chosencraft.www.eventworld.Permissions;
-
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

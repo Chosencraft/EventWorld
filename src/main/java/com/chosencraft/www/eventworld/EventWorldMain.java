@@ -1,11 +1,11 @@
 package com.chosencraft.www.eventworld;
 
+import com.chosencraft.www.eventworld.utils.StaffNotifier;
 import com.chosencraft.www.eventworld.commands.EventWorld;
 import com.chosencraft.www.eventworld.listeners.FlyingListener;
 import com.chosencraft.www.eventworld.listeners.PlayerDamageListener;
 import com.chosencraft.www.eventworld.utils.Logger;
 import com.chosencraft.www.eventworld.utils.OddUtilities;
-import com.chosencraft.www.eventworld.utils.StaffNotifier;
 import com.chosencraft.www.eventworld.world.GenerateWorlds;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;

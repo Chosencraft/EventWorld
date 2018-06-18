@@ -13,10 +13,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import java.awt.*;
 
 public class EventWorld implements CommandExecutor
 {
+
     private Logger log = Logger.getInstance();
     private World eventWorld = Bukkit.getWorld(EventWorldMain.eventWorldUUID);
     private String badPermission = response("Sorry, you don't have permission for this!");
