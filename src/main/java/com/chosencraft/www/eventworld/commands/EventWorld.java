@@ -2,6 +2,7 @@ package com.chosencraft.www.eventworld.commands;
 
 import com.chosencraft.www.eventworld.EventWorldMain;
 import com.chosencraft.www.eventworld.Permissions;
+import com.chosencraft.www.eventworld.events.Event;
 import com.chosencraft.www.eventworld.events.Events;
 import com.chosencraft.www.eventworld.utils.Logger;
 import com.chosencraft.www.eventworld.utils.OddUtilities;
@@ -48,7 +49,7 @@ public class EventWorld implements CommandExecutor
                             sendHelpMessage(player);
                             break;
                         case "setspawn":
-                            setEventSpawn(player);
+                            setEventWorldSpawn(player);
                             break;
                         case "spawn":
                             sendToEventSpawn(player);
@@ -123,7 +124,15 @@ public class EventWorld implements CommandExecutor
      */
     private void saveLocation(Location location, Events event )
     {
-        //TODO: save the location of the event to file
+        try
+        {
+            parseEventClass(event).setSpawnLocation(location);
+        }
+        catch (NullPointerException nullPointerException)
+        {
+            log.logError("NPE on saving " + event.toString() + "!");
+            nullPointerException.printStackTrace();
+        }
     }
 
     /**
@@ -146,7 +155,7 @@ public class EventWorld implements CommandExecutor
      * Sets the spawn of the event world
      * @param player Player setting the location
      */
-    private void setEventSpawn(Player player)
+    private void setEventWorldSpawn(Player player)
     {
         if (player.hasPermission(Permissions.COMMAND_SET_SPAWN))
         {
@@ -193,5 +202,34 @@ public class EventWorld implements CommandExecutor
                         ChatColor.GOLD + "] " +
                         status + "%s" ,
                 message);
+    }
+
+    /**
+     * Retrieves a new instance of the class equivelent of the enum
+     * @param events The class specifier to retrieve
+     * @return A new instance of the class needed.
+     */
+    private Event parseEventClass(Events events)
+    {
+        switch (events)
+        {
+            case BATTLESHIP:
+                return new Battleship();
+            case CTF:
+                return new CTF();
+            case DODGE:
+                return new Dodge();
+            case PARKOUR:
+                return new Parkour();
+            case PAYLOAD:
+                return new Payload();
+            case SPLEEF:
+                return new Spleef();
+            case UNKNOWN:
+                return null;
+                default:
+                    return null;
+        }
+
     }
 }
