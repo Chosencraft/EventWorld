@@ -8,9 +8,8 @@ import java.util.logging.Level;
 
 public class Logger
 {
-    private static Plugin main = EventWorldMain.getThisPlugin();
 
-    private static java.util.logging.Logger logger = main.getLogger();
+    private static java.util.logging.Logger logger = java.util.logging.Logger.getGlobal();
 
     private String logMessage =
             ChatColor.YELLOW + "[" +

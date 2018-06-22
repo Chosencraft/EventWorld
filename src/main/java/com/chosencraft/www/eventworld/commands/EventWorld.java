@@ -37,13 +37,13 @@ public class EventWorld implements CommandExecutor
                 player.sendMessage(badPermission);
             }
             else {
-                if (args[1] == null || args[1].isEmpty())
+                if ((args.length == 0) || args[0] == null || args[0].isEmpty())
                 {
                     sendHelpMessage(player);
                 }
                 else
                 {
-                    switch (args[1])
+                    switch (args[0])
                     {
                         case "help":
                             sendHelpMessage(player);
@@ -92,22 +92,30 @@ public class EventWorld implements CommandExecutor
     {
         if (player.hasPermission(Permissions.COMMAND_SET_EVENT_LOCATION))
         {
-            if (args[2] == null || args[2].isEmpty())
+            for (String n : args)
+            {
+                System.out.println(n);
+            }
+            if (args[0] == null || args[0].isEmpty() || args.length <= 1)
             {
                 player.sendMessage(response("Need to specify the event name!", true));
                 return;
             }
             else
             {
-                Events event = OddUtilities.stringToEvent(args[2]);
+                Events event = OddUtilities.stringToEvent(args[1]);
                 if (event.equals(Events.UNKNOWN))
                 {
-                    player.sendMessage(response("The event name " + args[2] + " doesn't exist!", true));
+                    player.sendMessage(response("The event name " + args[1] + " doesn't exist!", true));
                     return;
                 }
                 else
                 {
                     saveLocation(player.getLocation(), event);
+                    player.sendMessage(response("The event " + args[1] + "was set at " +
+                            player.getLocation().getBlockX() +  "," +
+                            player.getLocation().getBlockY() +  "," +
+                            player.getLocation().getBlockZ() , false));
                 }
             }
         }

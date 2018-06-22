@@ -3,6 +3,7 @@ package com.chosencraft.www.eventworld.events;
 import com.chosencraft.www.eventworld.utils.SettingsManager;
 import org.bukkit.Location;
 
+
 public class Event
 {
 
@@ -22,6 +23,18 @@ public class Event
     public Event (Events eventType)
     {
         this.eventType = eventType;
+        String eventName = eventType.toString().toUpperCase();
+        if (data.getKeys().contains(eventName))
+        {
+            this.location = new Location(
+                    data.get(eventName + ".World"),
+                    data.get(eventName + ".X"),
+                    data.get(eventName + ".Y"),
+                    data.get(eventName + ".Z"),
+                    data.get(eventName + ".Yaw"),
+                    data.get(eventName + ".Pitch")
+            );
+        }
     }
 
     /**
@@ -68,7 +81,7 @@ public class Event
         data.createSection(eventName + ".location.Z");
         data.createSection(eventName + ".location.Yaw");
         data.createSection(eventName + ".location.Pitch");
-        data.set(eventName + ".location.World", location.getWorld());
+        data.set(eventName + ".location.World", location.getWorld().getUID());
         data.set(eventName + ".location.X", location.getBlockX());
         data.set(eventName + ".location.Y", location.getBlockY());
         data.set(eventName + ".location.Z", location.getBlockZ());

@@ -14,7 +14,6 @@ public class CTF extends Event implements CommandExecutor
         super(Events.CTF);
     }
 
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {

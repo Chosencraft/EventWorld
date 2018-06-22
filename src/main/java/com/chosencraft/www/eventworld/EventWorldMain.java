@@ -27,12 +27,14 @@ public class EventWorldMain extends JavaPlugin
     public static UUID eventWorldUUID;
     private StaffNotifier notifier = new StaffNotifier();
 
+    private static Plugin plugin;
+
     /**
      * First call method of when the plugin is enabled
      */
     public void onEnable()
     {
-
+        this.plugin = this;
         saveDefaultConfig();
 
         // Check if the event world already exists
@@ -69,7 +71,7 @@ public class EventWorldMain extends JavaPlugin
         // unload the event world, important to do since without the plugin it isn't protected
 
         boolean unloadedSuccefully = Bukkit.unloadWorld(eventWorld, true);
-        if (!unloadedSuccefully)
+        if (! unloadedSuccefully)
         {
             log.logError(eventWorldName + " WAS UNABLE TO BE UNLOADED PROPERLY! Consider full server shutdown");
             notifier.notifyAdmins(Level.SEVERE, eventWorldName + " WAS UNABLE TO BE UNLOADED PROPERLY! Consider full server shutdown");
@@ -101,6 +103,7 @@ public class EventWorldMain extends JavaPlugin
 
     /**
      * Creates the EventWorld
+     *
      * @return The name of the newly created EventWorld
      */
     private UUID createEventWorld()
@@ -118,18 +121,19 @@ public class EventWorldMain extends JavaPlugin
             return null;
         }
 
-            eventWorld.setAmbientSpawnLimit(0);
-            eventWorld.setAnimalSpawnLimit(0);
-            eventWorld.setDifficulty(Difficulty.PEACEFUL);
-            eventWorld.setPVP(true); // Needs to be true for CTF, will need to handle other things on a regional basis
-            eventWorld.setMonsterSpawnLimit(0);
+        eventWorld.setAmbientSpawnLimit(0);
+        eventWorld.setAnimalSpawnLimit(0);
+        eventWorld.setDifficulty(Difficulty.PEACEFUL);
+        eventWorld.setPVP(true); // Needs to be true for CTF, will need to handle other things on a regional basis
+        eventWorld.setMonsterSpawnLimit(0);
 
         return eventWorld.getUID();
     }
 
-    public static Plugin getThisPlugin()
+
+    public static final Plugin getThisPlugin()
     {
-        return Bukkit.getPluginManager().getPlugin("EventWorld");
+        return plugin;
     }
 
 }
