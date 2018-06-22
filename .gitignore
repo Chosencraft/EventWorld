@@ -10,3 +10,6 @@
 .gradle/*
 build/
 /gradle/*
+out/*
+out/
+out
