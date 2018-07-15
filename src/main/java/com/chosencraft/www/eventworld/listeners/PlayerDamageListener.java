@@ -25,6 +25,7 @@ public class PlayerDamageListener implements Listener
 
             if (player.getWorld().getUID().equals(EventWorldMain.eventWorldUUID))
             {
+                //TODO: look per zone
                 damageEvent.setCancelled(true);
             }
 

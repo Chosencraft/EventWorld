@@ -1,5 +1,7 @@
 package com.chosencraft.www.eventworld;
 
+import com.chosencraft.www.eventworld.listeners.BlockHandlingListener;
+import com.chosencraft.www.eventworld.listeners.TeleportingListener;
 import com.chosencraft.www.eventworld.utils.StaffNotifier;
 import com.chosencraft.www.eventworld.commands.EventWorld;
 import com.chosencraft.www.eventworld.listeners.FlyingListener;
@@ -89,6 +91,9 @@ public class EventWorldMain extends JavaPlugin
 
         manager.registerEvents(new FlyingListener(), this);
         manager.registerEvents(new PlayerDamageListener(), this);
+        manager.registerEvents(new BlockHandlingListener(), this);
+        manager.registerEvents(new TeleportingListener(), this);
+
     }
 
 

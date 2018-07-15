@@ -5,6 +5,9 @@ public class Permissions
 
     // Listener Permissions
     public static String FLY_IN_EVENT_WORLD = "eventworld.listeners.fly";
+    public static String EVENT_WORLD_TELEPORT_OVERRIDE = "eventworld.listeners.teleport";
+    public static String EVENT_WORLD_BLOCK_BREAK_OVERRIDE = "eventworld.listeners.block.break";
+    public static String EVENT_WORLD_BLOCK_PLACE_OVERRIDE = "eventworld.listeners.block.place";
 
     // Command Permissions
 
