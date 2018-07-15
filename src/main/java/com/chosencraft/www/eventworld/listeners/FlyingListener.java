@@ -43,7 +43,7 @@ public class FlyingListener implements Listener
                 if (player.isFlying())
                 {
                     Location location = player.getLocation();
-                    Location landingSpot = getSkyFacingBlock(location);
+                    Location landingSpot = location.getWorld().getHighestBlockAt(location).getLocation();
                     player.setFlying(false);
                     if (landingSpot == null)
                     {
@@ -62,19 +62,4 @@ public class FlyingListener implements Listener
 
     }
 
-    private Location getSkyFacingBlock(Location location)
-    {
-        Location currentLocation = location;
-        while (location.getBlock().getType().equals(Material.AIR))
-        {
-            if (location.getY() < 0)
-            {
-                return null;
-            }
-
-            currentLocation = currentLocation.subtract(0, 1, 0);
-
-        }
-        return currentLocation;
-    }
 }
