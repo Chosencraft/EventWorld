@@ -43,7 +43,7 @@ public class FlyingListener implements Listener
                 if (player.isFlying())
                 {
                     Location location = player.getLocation();
-                    Location landingSpot = location.getWorld().getHighestBlockAt(location).getLocation();
+                    Location landingSpot = getGroundingBlock(location);
                     player.setFlying(false);
                     if (landingSpot == null)
                     {
@@ -60,6 +60,26 @@ public class FlyingListener implements Listener
         }
 
 
+    }
+
+    /**
+     * Get the nearest solid block player can land on
+     * @param playerLocation Location to find block of
+     * @return Location to spawn on
+     */
+    private Location getGroundingBlock(Location playerLocation)
+    {
+
+        while (playerLocation.getBlock().isEmpty())
+        {
+            playerLocation.subtract(0, 1, 0);
+            if ( playerLocation.getBlockY() < 0)
+            {
+                // unable to find replacement, sending to spawn
+                return Bukkit.getWorlds().get(0).getSpawnLocation();
+            }
+        }
+        return playerLocation.add(0,1,0);
     }
 
 }
