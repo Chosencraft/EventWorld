@@ -3,6 +3,7 @@ author: Kiro47
 version: 0.2
 main: com.chosencraft.www.eventworld.EventWorldMain
 description: Plugin to support and create the event world for ChosenCraft SMP
+api-version: 1.13
 
 commands:
   eventworld:

@@ -1,6 +1,9 @@
 package com.chosencraft.www.eventworld.world;
 
+import com.chosencraft.www.eventworld.EventWorldMain;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
@@ -38,14 +41,21 @@ public class VoidGenerator extends ChunkGenerator
         return new ArrayList<BlockPopulator>();
     }
 
+
     @Override
-    @Deprecated
-    public short[][] generateExtBlockSections(World world, Random random, int chunkX, int chunkY, BiomeGrid biomeGrid )
+    public ChunkData generateChunkData(World world, Random random, int x, int z, BiomeGrid biome)
     {
-        short[][] result = new short[world.getMaxHeight() / CHUNK_SIZE][];
-
-        return result;
+        ChunkData chunk = createChunkData(world);
+        for (int xCoord = 0; xCoord < 16; xCoord++)
+        {
+         for (int zCoord = 0; zCoord < 16; zCoord++)
+         {
+             for (int yCoord = 0;  yCoord < chunk.getMaxHeight(); yCoord++)
+             {
+                chunk.setBlock(xCoord,yCoord,zCoord, Material.AIR);
+             }
+         }
+        }
+        return chunk;
     }
-
-
 }

@@ -8,7 +8,6 @@ import java.util.logging.Level;
 
 public class Logger
 {
-
     private static java.util.logging.Logger logger = java.util.logging.Logger.getGlobal();
 
     private String logMessage =
